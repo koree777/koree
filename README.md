@@ -11,26 +11,27 @@ public class Main {
         boolean motorLigado = false;
         boolean embreagem = true;
 
+        System.out.println("  escreva embreagem para pressionar e prosseguir para os procedimentos de ligar o carro ");
+        String resposta1 = input.nextLine();
+        if (resposta1.equalsIgnoreCase("embreagem")){
+            System.out.println("embreagem pressionada");
+        } else{
+            System.out.println("pressione a embreagem para iniciar o motor");
+        }
+
         System.out.println("Deseja ligar o motor? (sim/não)");
         String resposta = input.nextLine();
-
         if (resposta.equalsIgnoreCase("sim")){
             motorLigado = true;
             System.out.println("Motor inicializado com sucesso");
         } else{
-            System.out.println("Seu motor permanecerá desligado , tente novamente inicialo seguindo os protocolos de segurança");
+            System.out.println("Seu motor permanecerá desligado , tente novamente iniciar seguindo os protocolos de segurança");
         return;
         }
-        if (embreagem){
-            System.out.println("Embreagem pressionada com sucesso");
-        } else {
-            System.out.println("Pressione a embreagem para prosseguir com a inicialização do motor");
-        }
+        
 
-
-
-        int rpm = random.nextInt(9000)+800;
-        System.out.println("seu rpm é " + rpm);
+        int oil = random.nextInt(9000)+800;
+        System.out.println("o nivel de oléo é " + oil);
 
 
         int falha = random.nextInt(10);
@@ -39,23 +40,23 @@ public class Main {
             System.out.println("Motor falhou!");
         }
 
-        if (rpm >= 9000){
+        if (oil >= 9000){
             System.out.println("Motor quebrou");
         }
-        else if (rpm >=8000){
-            System.out.println("dano no motor");
+        else if (oil >=8000){
+            System.out.println("nivel do oléo superior ao necessario , verifique para que nao haja danos ao motor ");
         }
-        else if (rpm >= 3500 && rpm <= 5000){
-            System.out.println("Troque a marcha");
+        else if (oil >= 3500 && oil <= 5000){
+            System.out.println("oléo abaixo do nivel recomendado");
         }
-        else if (rpm >= 5001 && rpm <= 7999){
-            System.out.println("troque a marcha");
+        else if (oil >= 5001 && oil <= 7999){
+            System.out.println("Nivel de oléo recomendado ");
         }
        for (int marcha = 1 ; marcha <=5; marcha ++){
            if (marcha == 1){
                System.out.println("Carro saindo em primeira marcha");
            } else {
-               System.out.println("Deseja trocar a marcha ?"+ marcha);
+               System.out.println("Deseja trocar a marcha "+ marcha );
            }
        }
     }
