@@ -1,2 +1,1 @@
-# koree
-just my first ia with python!
+java motor prototipo
