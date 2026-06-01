@@ -1,0 +1,36 @@
+import javax.swing.*;
+
+public class projeto {
+
+    public projeto() throws InterruptedException {
+
+        JFrame tela = new JFrame("Verificando Sensores...");
+        tela.setSize(400, 150);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        tela.setLayout(null);
+
+        JLabel texto = new JLabel("Iniciando sistema...");
+        texto.setBounds(120, 20, 200, 20);
+
+        JProgressBar barra = new JProgressBar(0, 100);
+        barra.setBounds(50, 60, 300, 30);
+        barra.setStringPainted(true);
+
+        tela.add(texto);
+        tela.add(barra);
+
+        if (i == 25) texto.setText("Verificando sensores...");
+        if (i == 50) texto.setText("Carregando sistema...");
+        if (i == 75) texto.setText("Preparando motor...");
+        if (i == 100) texto.setText("Concluído!");
+
+        tela.setVisible(true);
+
+        for (int i = 0; i <= 100; i++) {
+            barra.setValue(i);
+            Thread.sleep(50);
+        }
+
+        tela.dispose();
+    }
+}
