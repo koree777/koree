@@ -24,15 +24,9 @@ public class Main {
         System.out.println("Deseja ligar o motor? (sim/não)");
         String resposta = input.nextLine();
 
-        if (resposta.equalsIgnoreCase("sim")) {
-            motorLigado = true;
-            System.out.println("Motor inicializado com sucesso");
-        } else {
-            System.out.println("Motor desligado");
-            return;
-        }
 
-        new projeto();
+
+        new Projeto();
 
         int oil = random.nextInt(10) + 1;
 
@@ -44,6 +38,8 @@ public class Main {
             System.out.println("Motor falhou!");
         }
 
+        System.out.println("Iniciando verificação dos sistemas");
+
         if (oil >= 9) {
             System.out.println("Motor quebrou");
         } else if (oil >= 8) {
@@ -53,6 +49,14 @@ public class Main {
         } else if (oil >= 6 && oil <= 7) {
             System.out.println("Nível de óleo recomendado");
         }
+
+        int bateria = random.nextInt(101);
+        System.out.println("Bateria:"+ bateria + "%");
+
+        if (bateria < 20){
+            System.out.println("Bateria fraca");
+        }
+
 
         int combustivel = random.nextInt(60) + 10;
 
@@ -70,6 +74,15 @@ public class Main {
             System.out.println("Tanque cheio");
         }
 
+        int pneu = random.nextInt(10)+ 25;
+        System.out.println("Pressão dos pneus"+ pneu + "PSI");
+        if (pneu <= 27){
+            System.out.println("Pneu com pressão baixa");
+        }
+        else{
+            System.out.println("Todos os Pneus calibrados");
+        }
+
         System.out.println("Diga 'Olá Mercedes' para acessar a assistente virtual");
         String resposta2 = input.nextLine();
 
@@ -79,13 +92,12 @@ public class Main {
             System.out.println("Voz não reconhecida");
         }
 
-        System.out.println("Para abaixar os vidros aperte 1");
-        int resposta3 = input.nextInt();
+        System.out.println("Deseja abaixar os vidros ?");
+        String resposta3 = input.nextLine();
 
-        if (resposta3 == 1) {
+        if (resposta3.equalsIgnoreCase("sim")) {
             System.out.println("Vidros abaixados");
         }
-
         input.nextLine();
 
         System.out.println("Deseja ativar o modo direção automática? (sim/não)");
