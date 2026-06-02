@@ -1,36 +1,90 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class projeto {
+public class Projeto {
 
-    public projeto() throws InterruptedException {
+    public Projeto() throws InterruptedException {
 
-        JFrame tela = new JFrame("Verificando Sensores...");
-        tela.setSize(400, 150);
-        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        tela.setLayout(null);
+        JFrame tela = new JFrame();
+        tela.setSize(800, 400);
+        tela.setUndecorated(true);
+        tela.setLocationRelativeTo(null);
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel texto = new JLabel("Iniciando sistema...");
-        texto.setBounds(120, 20, 200, 20);
+        JPanel painel = new JPanel() {
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                Graphics2D g2 = (Graphics2D) g;
+
+                // Fundo
+                g2.setColor(new Color(10, 10, 10));
+                g2.fillRect(0, 0, getWidth(), getHeight());
+
+                // Velocímetro esquerdo
+                g2.setColor(new Color(40, 40, 40));
+                g2.drawOval(70, 80, 220, 220);
+
+                // Conta-giros direito
+                g2.drawOval(510, 80, 220, 220);
+
+                // Centro iluminado
+                g2.setColor(new Color(0, 180, 255));
+                g2.setFont(new Font("Arial", Font.BOLD, 45));
+                g2.drawString("MERCEDES SYSTEM", 250, 130);
+
+                g2.setFont(new Font("Arial", Font.PLAIN, 20));
+                g2.drawString("Vehicle Diagnostics", 285, 170);
+            }
+        };
+
+        painel.setLayout(null);
+
+        JLabel status = new JLabel("Booting...");
+        status.setForeground(new Color(0, 180, 255));
+        status.setFont(new Font("Consolas", Font.BOLD, 22));
+        status.setBounds(300, 220, 250, 30);
 
         JProgressBar barra = new JProgressBar(0, 100);
-        barra.setBounds(50, 60, 300, 30);
+        barra.setBounds(200, 270, 400, 20);
+        barra.setForeground(new Color(0, 180, 255));
+        barra.setBackground(new Color(40, 40, 40));
+        barra.setBorderPainted(false);
         barra.setStringPainted(true);
 
-        tela.add(texto);
-        tela.add(barra);
+        painel.add(status);
+        painel.add(barra);
 
-        if (i == 25) texto.setText("Verificando sensores...");
-        if (i == 50) texto.setText("Carregando sistema...");
-        if (i == 75) texto.setText("Preparando motor...");
-        if (i == 100) texto.setText("Concluído!");
-
+        tela.add(painel);
         tela.setVisible(true);
 
         for (int i = 0; i <= 100; i++) {
+
             barra.setValue(i);
-            Thread.sleep(50);
+
+            if (i < 20)
+                status.setText("Checking sensors...");
+            else if (i < 40)
+                status.setText("Battery diagnostics...");
+            else if (i < 60)
+                status.setText("Loading ECU...");
+            else if (i < 80)
+                status.setText("Fuel system check...");
+            else if (i < 100)
+                status.setText("Preparing ignition...");
+            else
+                status.setText("Engine Ready ✓");
+
+            Thread.sleep(40);
         }
 
+        Thread.sleep(2000);
         tela.dispose();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        new Projeto();
     }
 }
